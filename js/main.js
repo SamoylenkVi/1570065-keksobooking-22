@@ -40,8 +40,8 @@ const getRandomFeatures = () => {
 };
 
 const createOffer = () => {
-  const LOCATION_X = getRandomNumber(35.6, 35.7, 5);
-  const LOCATOIN_Y = getRandomNumber(139.7, 139.8, 5);
+  const locationX = getRandomNumber(35.6, 35.7, 5);
+  const locationY = getRandomNumber(139.7, 139.8, 5);
 
   return {
     author: {
@@ -50,7 +50,7 @@ const createOffer = () => {
 
     offer: {
       title: getRandomArrayElement(TITLE),
-      address: LOCATION_X + ', ' + LOCATOIN_Y,
+      address: locationX + ', ' + locationY,
       price: getRandomInteger(1000, 10000),
       type: getRandomArrayElement(TYPE),
       rooms: getRandomInteger(1, 5),
@@ -63,8 +63,8 @@ const createOffer = () => {
     },
 
     location: {
-      X: LOCATION_X,
-      Y: LOCATOIN_Y,
+      X: locationX,
+      Y: locationY,
     },
   }
 }
