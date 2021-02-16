@@ -79,6 +79,6 @@ const createOffer = () => {
   }
 }
 
-const createOffers = new Array(arrayLength).fill(null).map(() => createOffer());
+const offers = new Array(arrayLength).fill(null).map(() => createOffer());
 
-export { createOffers, PHOTOS};
+export { offers, PHOTOS};
