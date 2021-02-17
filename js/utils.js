@@ -20,4 +20,4 @@ const getRandomNumber = function (min, max, fixed) {
   const multiplier = Math.pow(10, fixed);
   return Math.round(random * multiplier) / multiplier;
 }
-export {getRandomInteger, getRandomNumber };
+export { getRandomInteger, getRandomNumber };

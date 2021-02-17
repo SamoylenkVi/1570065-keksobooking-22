@@ -79,6 +79,6 @@ const createOffer = () => {
   }
 }
 
-const similarOffer = new Array(arrayLength).fill(null).map(() => createOffer());
+const offers = new Array(arrayLength).fill(null).map(() => createOffer());
 
-similarOffer;
+export { offers, PHOTOS};
