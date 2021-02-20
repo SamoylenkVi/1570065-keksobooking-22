@@ -1,6 +1,5 @@
-import { offers, PHOTOS } from './data.js';
+import { PHOTOS } from './data.js';
 
-const map = document.querySelector('.map__canvas')
 const card = document.querySelector('#card')
   .content;
 
@@ -54,7 +53,7 @@ const renderCard = ({ author, offer }) => {
 
   renderFeatures(offer.features, offerCard.querySelector('.popup__features'));
 
-  map.appendChild(offerCard);
+  return offerCard
 };
 
-renderCard(offers[0]);
+export { renderCard };
