@@ -1,3 +1,4 @@
+/*global L:readonly*/
 import { offers } from './data.js';
 import { renderCard } from './offer-card.js';
 
@@ -5,6 +6,7 @@ const adForm = document.querySelector('.ad-form');
 const fieldstForm = adForm.querySelectorAll('fieldset')
 const mapFilters = document.querySelector('.map__filters');
 const fieldstMapFilters = mapFilters.querySelectorAll('select, fieldset');
+const allFieldserForm = [...fieldstForm, ...fieldstMapFilters]
 const address = adForm.querySelector('#address')
 const FIXED_NUMBER = 5;
 const LAT_MAP = 35.652832;
@@ -19,25 +21,18 @@ const toggleInteractiv = (isActive) => {
 
   if (!isActive) {
 
-    fieldstForm.forEach(element => {
-      element.setAttribute('disabled', 'disabled');
-    });
-
-    fieldstMapFilters.forEach(element => {
-      element.setAttribute('disabled', 'disabled');
+    allFieldserForm.forEach(element => {
+      element.disabled = true;
     });
 
     return;
   }
   // is active
-  fieldstForm.forEach(element => {
-    element.removeAttribute('disabled', 'disabled');
+  allFieldserForm.forEach(element => {
+    element.disabled = false;
   });
 
-  fieldstMapFilters.forEach(element => {
-    element.removeAttribute('disabled', 'disabled');
-  });
-  address.setAttribute('readonly', 'readonly');
+  address.readOnly = true;
 }
 
 toggleInteractiv(false);
