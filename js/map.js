@@ -3,10 +3,8 @@ import { offers } from './data.js';
 import { renderCard } from './offer-card.js';
 
 const adForm = document.querySelector('.ad-form');
-const fieldstForm = adForm.querySelectorAll('fieldset')
 const mapFilters = document.querySelector('.map__filters');
-const fieldstMapFilters = mapFilters.querySelectorAll('select, fieldset');
-const allFieldserForm = [...fieldstForm, ...fieldstMapFilters]
+const disabledFields = document.querySelectorAll('select.map__filter, fieldset');
 const address = adForm.querySelector('#address')
 const FIXED_NUMBER = 5;
 const LAT_MAP = 35.652832;
@@ -15,31 +13,26 @@ const ZOOM_MAP = 12;
 const LAT_MAIN_MARKER = 35.65952;
 const LNG_MAIN_MARKER = 139.78179;
 
-const toggleInteractiv = (isActive) => {
+const setDisabledState = () => {
+  disabledFields.forEach((item) => {
+    item.disabled = !item.disabled
+  });
+};
+
+const toggleInteractiv = () => {
   adForm.classList.toggle('ad-form--disabled')
   mapFilters.classList.toggle('map__filters--disabled')
 
-  if (!isActive) {
-
-    allFieldserForm.forEach(element => {
-      element.disabled = true;
-    });
-
-    return;
-  }
-  // is active
-  allFieldserForm.forEach(element => {
-    element.disabled = false;
-  });
+  setDisabledState()
 
   address.readOnly = true;
-}
+};
 
-toggleInteractiv(false);
+toggleInteractiv();
 
 const map = L.map('map-canvas')
   .on('load', () => {
-    toggleInteractiv(true);
+    toggleInteractiv();
   })
   .setView({
     lat: LAT_MAP,
