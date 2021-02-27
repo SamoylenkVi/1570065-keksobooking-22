@@ -1,6 +1,6 @@
-import { offers, PHOTOS } from './data.js';
+import { PHOTOS } from './data.js';
+import { numDecline } from './utils.js'
 
-const map = document.querySelector('.map__canvas')
 const card = document.querySelector('#card')
   .content;
 
@@ -43,7 +43,7 @@ const renderCard = ({ author, offer }) => {
   offerCard.querySelector('.popup__text--address').textContent = offer.address;
   offerCard.querySelector('.popup__text--price').textContent = `${offer.price} ₽/ночь`;
   offerCard.querySelector('.popup__type').textContent = TypeOfHouse[offer.type];
-  offerCard.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
+  offerCard.querySelector('.popup__text--capacity').textContent = `${offer.rooms} ${numDecline(offer.rooms, 'комната', 'комнаты', 'комнат')} для ${offer.guests} ${numDecline(offer.guests, 'гостя', 'гостей', 'гостей')}`;
   offerCard.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   offerCard.querySelector('.popup__description').textContent = offer.description;
   offerCard.querySelector('.popup__avatar').src = author.avatar;
@@ -54,7 +54,7 @@ const renderCard = ({ author, offer }) => {
 
   renderFeatures(offer.features, offerCard.querySelector('.popup__features'));
 
-  map.appendChild(offerCard);
+  return offerCard
 };
 
-renderCard(offers[0]);
+export { renderCard };
