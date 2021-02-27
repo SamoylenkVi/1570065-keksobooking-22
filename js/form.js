@@ -1,6 +1,8 @@
 const selectTypeOfHousing = document.querySelector('#type');
-
 const price = document.querySelector('#price');
+const formTime = document.querySelector('.ad-form__element--time')
+const timeIn = document.querySelector('#timein')
+const timeOut = document.querySelector('#timeout')
 
 const bungalow = {
   placeholder: '0',
@@ -43,4 +45,9 @@ selectTypeOfHousing.addEventListener('change', () => {
       break;
 
   }
+});
+
+formTime.addEventListener('change', (evt) =>{
+  timeOut.value = evt.target.value
+  timeIn.value = evt.target.value
 });
