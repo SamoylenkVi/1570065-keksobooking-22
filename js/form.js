@@ -1,8 +1,11 @@
 const selectTypeOfHousing = document.querySelector('#type');
 const price = document.querySelector('#price');
-const formTime = document.querySelector('.ad-form__element--time')
-const timeIn = document.querySelector('#timein')
-const timeOut = document.querySelector('#timeout')
+const formTime = document.querySelector('.ad-form__element--time');
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
+const roomNumber = document.querySelector('#room_number');
+const capacity = document.querySelector('#capacity');
+const guestNumber = capacity.querySelectorAll('option')
 
 const bungalow = {
   placeholder: '0',
@@ -47,7 +50,29 @@ selectTypeOfHousing.addEventListener('change', () => {
   }
 });
 
-formTime.addEventListener('change', (evt) =>{
-  timeOut.value = evt.target.value
-  timeIn.value = evt.target.value
+formTime.addEventListener('change', (evt) => {
+  timeOut.value = evt.target.value;
+  timeIn.value = evt.target.value;
+});
+
+const renderGuestNumber = () => {
+
+  guestNumber.forEach((guest) => {
+    if (+roomNumber.value === 100){
+      guest.disabled = true;
+      if (+guest.value === 0){
+        guest.disabled = false;
+      }
+    } else if ((+guest.value > roomNumber.value) || (+guest.value === 0)) {
+      guest.disabled = true;
+    } else {
+      guest.disabled = false;
+    }
+  });
+}
+
+renderGuestNumber();
+
+roomNumber.addEventListener('change', () => {
+  renderGuestNumber();
 });
