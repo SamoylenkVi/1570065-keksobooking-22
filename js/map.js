@@ -1,5 +1,4 @@
 /*global L:readonly*/
-import { offers } from './data.js';
 import { renderCard } from './offer-card.js';
 
 const adForm = document.querySelector('.ad-form');
@@ -76,22 +75,31 @@ const PinIcon = L.icon({
   iconAnchor: [20, 40],
 });
 
-offers.forEach((point) => {
-  const { location } = point;
-  const marker = L.marker(
-    {
-      lat: location.X,
-      lng: location.Y,
-    },
-    {
-      icon: PinIcon,
-    },
-  )
-  marker
-    .addTo(map)
-    .bindPopup(renderCard(point),
+const createMapPin = (points) => {
+  points.forEach((point) => {
+    const { location } = point;
+    const marker = L.marker(
       {
-        keepInView: true,
+        lat: location.lat,
+        lng: location.lng,
       },
-    );
-})
+      {
+        icon: PinIcon,
+      },
+    )
+    marker
+      .addTo(map)
+      .bindPopup(renderCard(point),
+        {
+          keepInView: true,
+        },
+      );
+  })
+}
+
+export {createMapPin};
+// const mapElement = document.querySelector('.map__canvas');
+
+// const popup = document.createElement('div');
+// popup.textContent = "Загрузка объявлений...";
+// mapElement.appendChild(popup);

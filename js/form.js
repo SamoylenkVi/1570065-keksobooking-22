@@ -5,7 +5,7 @@ const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
 const roomNumber = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
-const guestNumber = capacity.querySelectorAll('option')
+const guestNumber = capacity.querySelectorAll('option');
 
 const bungalow = {
   placeholder: '0',
@@ -58,9 +58,9 @@ formTime.addEventListener('change', (evt) => {
 const renderGuestNumber = () => {
 
   guestNumber.forEach((guest) => {
-    if (+roomNumber.value === 100){
+    if (+roomNumber.value === 100) {
       guest.disabled = true;
-      if (+guest.value === 0){
+      if (+guest.value === 0) {
         guest.disabled = false;
       }
     } else if ((+guest.value > roomNumber.value) || (+guest.value === 0)) {

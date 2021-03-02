@@ -1,4 +1,3 @@
-import { PHOTOS } from './data.js';
 import { numDecline } from './utils.js'
 
 const card = document.querySelector('#card')
@@ -50,7 +49,7 @@ const renderCard = ({ author, offer }) => {
 
   let photoContainer = offerCard.querySelector('.popup__photos');
 
-  photoContainer.appendChild(renderImages(photoContainer, PHOTOS));
+  photoContainer.appendChild(renderImages(photoContainer, offer.photos));
 
   renderFeatures(offer.features, offerCard.querySelector('.popup__features'));
 
