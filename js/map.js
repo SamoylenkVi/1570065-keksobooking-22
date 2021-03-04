@@ -12,6 +12,18 @@ const ZOOM_MAP = 12;
 const LAT_MAIN_MARKER = 35.65952;
 const LNG_MAIN_MARKER = 139.78179;
 
+const MainPin = {
+  url: './img/main-pin.svg',
+  size: [40, 40],
+  anchor: [20, 40],
+};
+
+const Pin = {
+  url: './img/pin.svg',
+  size: [40, 40],
+  anchor: [20, 40],
+};
+
 const setDisabledState = () => {
   disabledFields.forEach((item) => {
     item.disabled = !item.disabled
@@ -46,9 +58,9 @@ L.tileLayer(
 ).addTo(map);
 
 const mainPinIcon = L.icon({
-  iconUrl: './img/main-pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconUrl: MainPin.url,
+  iconSize: MainPin.size,
+  iconAnchor: MainPin.anchor,
 });
 
 const mainMarker = L.marker(
@@ -70,9 +82,9 @@ mainMarker.on('moveend', (evt) => {
 });
 
 const PinIcon = L.icon({
-  iconUrl: './img/pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconUrl: Pin.url,
+  iconSize: Pin.size,
+  iconAnchor: Pin.anchor,
 });
 
 const createMapPin = (points) => {
@@ -98,8 +110,3 @@ const createMapPin = (points) => {
 }
 
 export {createMapPin};
-// const mapElement = document.querySelector('.map__canvas');
-
-// const popup = document.createElement('div');
-// popup.textContent = "Загрузка объявлений...";
-// mapElement.appendChild(popup);

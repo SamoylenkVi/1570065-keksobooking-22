@@ -5,6 +5,7 @@ const successMesage = document.querySelector('#success')
 const errorMesage = document.querySelector('#error')
   .content;
 const main = document.querySelector('main');
+const keyEscape = 'Escape';
 
 const addOfferFormSubmit = (onSuccess, onError ) => {
 
@@ -34,7 +35,7 @@ const escapeSuccessKeydownHandler = (evt) => {
 
   evt.preventDefault();
 
-  if (evt.keyCode === 27) {
+  if (evt.key === keyEscape) {
     popUp.remove();
   }
 
@@ -63,7 +64,7 @@ const escapeErrorKeydownHandler = (evt) => {
 
   evt.preventDefault();
 
-  if (evt.keyCode === 27) {
+  if (evt.key === keyEscape) {
     popUpError.remove();
   }
 

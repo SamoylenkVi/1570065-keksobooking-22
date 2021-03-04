@@ -1,6 +1,8 @@
 import {createMapPin} from './map.js';
 
-fetch('https://22.javascript.pages.academy/keksobooking/data')
+const importServer = 'https://22.javascript.pages.academy/keksobooking/data';
+
+fetch(importServer)
   .then((response) => response.json())
   .then((offers) => {
     createMapPin(offers);
