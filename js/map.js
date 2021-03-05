@@ -1,5 +1,4 @@
 /*global L:readonly*/
-import { offers } from './data.js';
 import { renderCard } from './offer-card.js';
 
 const adForm = document.querySelector('.ad-form');
@@ -12,6 +11,18 @@ const LNG_MAP = 139.839478;
 const ZOOM_MAP = 12;
 const LAT_MAIN_MARKER = 35.65952;
 const LNG_MAIN_MARKER = 139.78179;
+
+const MainPin = {
+  url: './img/main-pin.svg',
+  size: [40, 40],
+  anchor: [20, 40],
+};
+
+const Pin = {
+  url: './img/pin.svg',
+  size: [40, 40],
+  anchor: [20, 40],
+};
 
 const setDisabledState = () => {
   disabledFields.forEach((item) => {
@@ -47,9 +58,9 @@ L.tileLayer(
 ).addTo(map);
 
 const mainPinIcon = L.icon({
-  iconUrl: './img/main-pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconUrl: MainPin.url,
+  iconSize: MainPin.size,
+  iconAnchor: MainPin.anchor,
 });
 
 const mainMarker = L.marker(
@@ -71,27 +82,31 @@ mainMarker.on('moveend', (evt) => {
 });
 
 const PinIcon = L.icon({
-  iconUrl: './img/pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconUrl: Pin.url,
+  iconSize: Pin.size,
+  iconAnchor: Pin.anchor,
 });
 
-offers.forEach((point) => {
-  const { location } = point;
-  const marker = L.marker(
-    {
-      lat: location.X,
-      lng: location.Y,
-    },
-    {
-      icon: PinIcon,
-    },
-  )
-  marker
-    .addTo(map)
-    .bindPopup(renderCard(point),
+const createMapPin = (points) => {
+  points.forEach((point) => {
+    const { location } = point;
+    const marker = L.marker(
       {
-        keepInView: true,
+        lat: location.lat,
+        lng: location.lng,
       },
-    );
-})
+      {
+        icon: PinIcon,
+      },
+    )
+    marker
+      .addTo(map)
+      .bindPopup(renderCard(point),
+        {
+          keepInView: true,
+        },
+      );
+  })
+}
+
+export {createMapPin};
