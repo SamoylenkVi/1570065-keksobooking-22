@@ -39,12 +39,6 @@ const validateRooms = () => {
   const roomValue = roomNumber.value;
 
   guestNumber.forEach((guest) => {
-
-    //  в словарь numberOfGuests подставляется в значение roomValue получаем массив с возможным колличеством гостей для данного номера
-    // , в массиве смотрим есть ли такой элемент при приравнивание к -1 мы получаем, что такого элемента нет,
-    // то что это написанно в скобках дает нам булевое значение
-    // если этого элемента нет, то нам выдает try и значит этот элемент будет disabled
-
     const isDisabled = (NumberOfGuests[roomValue].indexOf(guest.value) === -1);
     guest.selected = NumberOfGuests[roomValue][0] === guest.value;
     guest.disabled = isDisabled;

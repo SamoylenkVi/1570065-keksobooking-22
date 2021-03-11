@@ -87,6 +87,12 @@ const PinIcon = L.icon({
   iconAnchor: Pin.anchor,
 });
 
+const layerGroup = L.layerGroup().addTo(map);
+
+const removeMapPin = () => {
+  layerGroup.clearLayers();
+}
+
 const createMapPin = (points) => {
   points.forEach((point) => {
     const { location } = point;
@@ -98,15 +104,21 @@ const createMapPin = (points) => {
       {
         icon: PinIcon,
       },
-    )
+    );
+
     marker
-      .addTo(map)
+      .addTo(layerGroup)
+      // .addTo(map)
       .bindPopup(renderCard(point),
         {
           keepInView: true,
         },
       );
-  })
+  });
+
+
+
 }
 
-export {createMapPin};
+
+export { createMapPin, removeMapPin };
