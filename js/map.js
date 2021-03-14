@@ -108,15 +108,12 @@ const createMapPin = (points) => {
 
     marker
       .addTo(layerGroup)
-      // .addTo(map)
-      .bindPopup(renderCard(point),
+      .bindPopup(() => renderCard(point),
         {
           keepInView: true,
         },
       );
   });
-
-
 
 }
 
