@@ -1,5 +1,4 @@
-/* global _:readonly */
-
+import {debounce} from './utils.js'
 import { createMapPin, removeMapPin } from './map.js';
 
 const mapFilters = document.querySelector('.map__filters');
@@ -71,9 +70,8 @@ const setFilters = (offers) => {
 
     createMapPin(filterOffers(offers));
   }
-  mapFilters.addEventListener('change', _.debounce(
+  mapFilters.addEventListener('change', debounce(
     (evt) => onFiltersChange(evt),
-    1000,
   ))
 }
 
