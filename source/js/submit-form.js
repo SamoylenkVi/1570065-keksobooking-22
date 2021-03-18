@@ -1,3 +1,5 @@
+import { adressDefoult } from './map.js';
+const AVATAR_DEFOULT = 'img/muffin-grey.svg';
 const addOfferForm = document.querySelector('.ad-form');
 const resetFormButton = addOfferForm.querySelector('.ad-form__reset');
 const successMesage = document.querySelector('#success')
@@ -5,6 +7,10 @@ const successMesage = document.querySelector('#success')
 const errorMesage = document.querySelector('#error')
   .content;
 const main = document.querySelector('main');
+const containerPictureAvatar = document.querySelector('.ad-form-header__preview');
+const avatarPicture = containerPictureAvatar.querySelector('img');
+const housingPictureContainer = document.querySelector('.ad-form__photo');
+const housingPicture = document.querySelector('.ad-form__photo').children;
 const keyEscape = 'Escape';
 
 const addOfferFormSubmit = (onSuccess, onError ) => {
@@ -81,14 +87,21 @@ const closeErrorPopUpHandler = () => {
   document.removeEventListener('keydown', escapeErrorKeydownHandler);
 }
 
+const resetForm = () => {
+  addOfferForm.reset();
+  adressDefoult();
+  avatarPicture.src = AVATAR_DEFOULT;
+  housingPictureContainer.removeChild(housingPicture);
+}
+
 resetFormButton.addEventListener('click', (evt) => {
   evt.preventDefault();
-  addOfferForm.reset();
+  resetForm ();
 })
 
 const successfulFormSubmission = () => {
   createSuccessMesage();
-  addOfferForm.reset();
+  resetForm();
 }
 
 addOfferFormSubmit(successfulFormSubmission, createErrorMesage)
