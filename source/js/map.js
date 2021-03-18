@@ -74,7 +74,11 @@ const mainMarker = L.marker(
   },
 ).addTo(map);
 
-address.value = LAT_MAIN_MARKER + ', ' + LNG_MAIN_MARKER;
+const adressDefoult = () => {
+  address.value = LAT_MAIN_MARKER + ', ' + LNG_MAIN_MARKER;
+}
+
+adressDefoult();
 
 mainMarker.on('moveend', (evt) => {
   const { lat, lng } = evt.target.getLatLng();
@@ -118,4 +122,4 @@ const createMapPin = (points) => {
 }
 
 
-export { createMapPin, removeMapPin };
+export { createMapPin, removeMapPin, adressDefoult };
