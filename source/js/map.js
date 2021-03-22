@@ -1,16 +1,17 @@
 /*global L:readonly*/
 import { renderCard } from './offer-card.js';
 
-const adForm = document.querySelector('.ad-form');
-const mapFilters = document.querySelector('.map__filters');
-const disabledFields = document.querySelectorAll('select.map__filter, fieldset');
-const address = adForm.querySelector('#address')
 const FIXED_NUMBER = 5;
 const LAT_MAP = 35.652832;
 const LNG_MAP = 139.839478;
 const ZOOM_MAP = 12;
 const LAT_MAIN_MARKER = 35.65952;
 const LNG_MAIN_MARKER = 139.78179;
+const adForm = document.querySelector('.ad-form');
+const mapFilters = document.querySelector('.map__filters');
+const disabledFields = document.querySelectorAll('select.map__filter, fieldset');
+const address = adForm.querySelector('#address')
+
 
 const MainPin = {
   url: './img/main-pin.svg',

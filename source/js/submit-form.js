@@ -1,5 +1,7 @@
-import { adressDefoult } from './map.js';
+import { adressDefoult, createMapPin } from './map.js';
+import { dataOffers } from './fetch.js';
 const AVATAR_DEFOULT = 'img/muffin-grey.svg';
+const EXPORT_SERVER = 'https://22.javascript.pages.academy/keksobooking';
 const addOfferForm = document.querySelector('.ad-form');
 const resetFormButton = addOfferForm.querySelector('.ad-form__reset');
 const successMesage = document.querySelector('#success')
@@ -10,7 +12,7 @@ const main = document.querySelector('main');
 const containerPictureAvatar = document.querySelector('.ad-form-header__preview');
 const avatarPicture = containerPictureAvatar.querySelector('img');
 const housingPictureContainer = document.querySelector('.ad-form__photo');
-const housingPicture = document.querySelector('.ad-form__photo').children;
+const mapFilters = document.querySelector('.map__filters');
 const keyEscape = 'Escape';
 
 const addOfferFormSubmit = (onSuccess, onError ) => {
@@ -19,7 +21,7 @@ const addOfferFormSubmit = (onSuccess, onError ) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
     fetch(
-      'https://22.javascript.pages.academy/keksobooking',
+      EXPORT_SERVER,
       {
         method: 'POST',
         body: formData,
@@ -91,7 +93,9 @@ const resetForm = () => {
   addOfferForm.reset();
   adressDefoult();
   avatarPicture.src = AVATAR_DEFOULT;
-  housingPictureContainer.removeChild(housingPicture);
+  housingPictureContainer.innerHTML = '';
+  mapFilters.reset();
+  createMapPin(dataOffers);
 }
 
 resetFormButton.addEventListener('click', (evt) => {

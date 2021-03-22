@@ -2,7 +2,6 @@ import {debounce} from './utils.js'
 import { createMapPin, removeMapPin } from './map.js';
 
 const mapFilters = document.querySelector('.map__filters');
-
 const MAX_OFFERS = 10;
 
 const filterSettings = {
