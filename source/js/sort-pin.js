@@ -1,8 +1,8 @@
 import {debounce} from './utils.js'
 import { createMapPin, removeMapPin } from './map.js';
 
-const mapFilters = document.querySelector('.map__filters');
 const MAX_OFFERS = 10;
+const DEFOULT = 'any';
 
 const filterSettings = {
   type: 'any',
@@ -35,6 +35,8 @@ const price = {
   },
 }
 
+const mapFilters = document.querySelector('.map__filters');
+
 const checkFeturesList = ({ features }) => {
   const checkedfeaturesElements = Array.from(mapFilters.querySelectorAll('input[type=checkbox]:checked'));
 
@@ -46,10 +48,10 @@ const filterOffers = (offers) => {
   for (let i = 0; i < offers.length; i++) {
     const { offer } = offers[i];
     if (
-      (filterSettings.type === 'any' || filterSettings.type === offer.type) &&
-      (filterSettings.price === 'any' || price[filterSettings.price](offer)) &&
-      (filterSettings.rooms === 'any' || +filterSettings.rooms === offer.rooms) &&
-      (filterSettings.guests === 'any' || +filterSettings.guests === offer.guests) &&
+      (filterSettings.type === DEFOULT || filterSettings.type === offer.type) &&
+      (filterSettings.price === DEFOULT || price[filterSettings.price](offer)) &&
+      (filterSettings.rooms === DEFOULT || +filterSettings.rooms === offer.rooms) &&
+      (filterSettings.guests === DEFOULT || +filterSettings.guests === offer.guests) &&
       checkFeturesList(offer)
     ) {
       filtered.push(offers[i]);

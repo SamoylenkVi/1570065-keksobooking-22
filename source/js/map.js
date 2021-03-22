@@ -7,11 +7,8 @@ const LNG_MAP = 139.839478;
 const ZOOM_MAP = 12;
 const LAT_MAIN_MARKER = 35.65952;
 const LNG_MAIN_MARKER = 139.78179;
-const adForm = document.querySelector('.ad-form');
-const mapFilters = document.querySelector('.map__filters');
-const disabledFields = document.querySelectorAll('select.map__filter, fieldset');
-const address = adForm.querySelector('#address')
-
+const TITLE_LAYER = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const LAYER_ATTRIBUTION =  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 const MainPin = {
   url: './img/main-pin.svg',
@@ -24,6 +21,12 @@ const Pin = {
   size: [40, 40],
   anchor: [20, 40],
 };
+
+const adForm = document.querySelector('.ad-form');
+const mapFilters = document.querySelector('.map__filters');
+const disabledFields = document.querySelectorAll('select.map__filter, fieldset');
+const address = adForm.querySelector('#address')
+
 
 const setDisabledState = () => {
   disabledFields.forEach((item) => {
@@ -52,9 +55,9 @@ const map = L.map('map-canvas')
   }, ZOOM_MAP);
 
 L.tileLayer(
-  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  TITLE_LAYER,
   {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    attribution: LAYER_ATTRIBUTION,
   },
 ).addTo(map);
 
@@ -64,7 +67,7 @@ const mainPinIcon = L.icon({
   iconAnchor: MainPin.anchor,
 });
 
-const mainMarker = L.marker(
+let mainMarker = L.marker(
   {
     lat: LAT_MAIN_MARKER,
     lng: LNG_MAIN_MARKER,
@@ -77,6 +80,15 @@ const mainMarker = L.marker(
 
 const adressDefoult = () => {
   address.value = LAT_MAIN_MARKER + ', ' + LNG_MAIN_MARKER;
+}
+
+const updateMainMarker = () => {
+
+  mainMarker.setLatLng(
+    {
+      lat: LAT_MAIN_MARKER,
+      lng: LNG_MAIN_MARKER,
+    })
 }
 
 adressDefoult();
@@ -122,5 +134,4 @@ const createMapPin = (points) => {
 
 }
 
-
-export { createMapPin, removeMapPin, adressDefoult };
+export { createMapPin, removeMapPin, adressDefoult, updateMainMarker };

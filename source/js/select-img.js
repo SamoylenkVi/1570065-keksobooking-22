@@ -1,16 +1,17 @@
 const FILE_TIPES = ['jpg', 'jpeg', 'png'];
 const TAGNAME = 'img';
 
-const avatar = document.querySelector('#avatar');
-const avatarImageContainer = document.querySelector('.ad-form-header__preview');
-const inputPhotoOfHousing = document.querySelector('.ad-form__input');
-const housingPictureContainer = document.querySelector('.ad-form__photo');
-
 const picture = {
   alt: 'Фотография жилья',
   width: 70,
   height: 70,
 }
+
+const avatar = document.querySelector('#avatar');
+const addForm = document.querySelector('.ad-form');
+const avatarImageContainer = addForm.querySelector('.ad-form-header__preview');
+const inputPhotoOfHousing = addForm.querySelector('.ad-form__input');
+const housingPictureContainer = addForm.querySelector('.ad-form__photo');
 
 const renderImage = (container, tagName, pictureAttribut) => {
 

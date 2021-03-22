@@ -1,10 +1,15 @@
 import { createMapPin } from './map.js';
 import { setFilters } from './sort-pin.js'
-const map = document.querySelector('.map__canvas');
+
 const TAG_NAME = ['div', 'p', 'button'];
 const CLASS_NAME = 'map__error';
 const TEXT = 'Произошла ошибка! Попробуйте обновить страницу';
 const BUTTON_TEXT = 'Закрыть';
+const IMPORT_SERVER = 'https://22.javascript.pages.academy/keksobooking/data';
+const PIN_COUNT = 10;
+
+const map = document.querySelector('.map__canvas');
+let dataOffers = [];
 
 const createErrorMesage = () => {
 
@@ -25,10 +30,6 @@ const createErrorMesage = () => {
 
   button.addEventListener('click', closeErrorPopUpHandler);
 }
-
-const IMPORT_SERVER = 'https://22.javascript.pages.academy/keksobooking/data';
-const PIN_COUNT = 10;
-let dataOffers = [];
 
 fetch(IMPORT_SERVER)
   .then((response) => response.json())

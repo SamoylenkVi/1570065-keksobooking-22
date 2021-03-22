@@ -1,14 +1,14 @@
 import { numDecline } from './utils.js'
 
-const card = document.querySelector('#card')
-  .content;
-
 const TypeOfHouse = {
   flat: 'Квартира',
   bungalow: 'Бунгало',
   house: 'Дом',
   palace: 'Дворец',
 };
+
+const card = document.querySelector('#card')
+  .content;
 
 const renderImages = (container, sources) => {
   let popupPhoto = container.querySelector('.popup__photo');

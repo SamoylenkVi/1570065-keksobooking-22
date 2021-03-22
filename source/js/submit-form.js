@@ -1,8 +1,17 @@
-import { adressDefoult, createMapPin } from './map.js';
+import { adressDefoult, createMapPin, updateMainMarker } from './map.js';
 import { dataOffers } from './fetch.js';
+
 const AVATAR_DEFOULT = 'img/muffin-grey.svg';
 const EXPORT_SERVER = 'https://22.javascript.pages.academy/keksobooking';
+const PRICE_DEFOULT = '1000';
+
+const Keys = {
+  ESCAPE: 'Escape',
+  ESC: 'Esc',
+}
+
 const addOfferForm = document.querySelector('.ad-form');
+const offerPrice = addOfferForm.querySelector('#price');
 const resetFormButton = addOfferForm.querySelector('.ad-form__reset');
 const successMesage = document.querySelector('#success')
   .content;
@@ -13,9 +22,8 @@ const containerPictureAvatar = document.querySelector('.ad-form-header__preview'
 const avatarPicture = containerPictureAvatar.querySelector('img');
 const housingPictureContainer = document.querySelector('.ad-form__photo');
 const mapFilters = document.querySelector('.map__filters');
-const keyEscape = 'Escape';
 
-const addOfferFormSubmit = (onSuccess, onError ) => {
+const addOfferFormSubmit = (onSuccess, onError) => {
 
   addOfferForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -43,7 +51,7 @@ const escapeSuccessKeydownHandler = (evt) => {
 
   evt.preventDefault();
 
-  if (evt.key === keyEscape) {
+  if (evt.key === Keys.ESCAPE || evt.key === Keys.ESC ) {
     popUp.remove();
   }
 
@@ -72,7 +80,7 @@ const escapeErrorKeydownHandler = (evt) => {
 
   evt.preventDefault();
 
-  if (evt.key === keyEscape) {
+  if (evt.key === Keys.ESCAPE || evt.key === Keys.ESC) {
     popUpError.remove();
   }
 
@@ -91,7 +99,9 @@ const closeErrorPopUpHandler = () => {
 
 const resetForm = () => {
   addOfferForm.reset();
+  offerPrice.placeholder = PRICE_DEFOULT;
   adressDefoult();
+  updateMainMarker();
   avatarPicture.src = AVATAR_DEFOULT;
   housingPictureContainer.innerHTML = '';
   mapFilters.reset();
@@ -100,7 +110,7 @@ const resetForm = () => {
 
 resetFormButton.addEventListener('click', (evt) => {
   evt.preventDefault();
-  resetForm ();
+  resetForm();
 })
 
 const successfulFormSubmission = () => {
