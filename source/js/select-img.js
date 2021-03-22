@@ -14,9 +14,8 @@ const picture = {
 
 const renderImage = (container, tagName, pictureAttribut) => {
 
-  let element = container.querySelector(tagName);
-
   const onAvatarChange = (evt) => {
+    let element = container.querySelector(tagName);
     const file = evt.target.files[0];
     const fileName = file.name.toLowerCase();
 
