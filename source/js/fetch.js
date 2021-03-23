@@ -1,7 +1,6 @@
 import { createMapPin } from './map.js';
 import { setFilters } from './sort-pin.js'
 
-const TAG_NAME = ['div', 'p', 'button'];
 const CLASS_NAME = 'map__error';
 const TEXT = 'Произошла ошибка! Попробуйте обновить страницу';
 const BUTTON_TEXT = 'Закрыть';
@@ -13,11 +12,11 @@ let dataOffers = [];
 
 const createErrorMesage = () => {
 
-  const message = document.createElement(TAG_NAME[0]);
+  const message = document.createElement('div');
   message.classList.add(CLASS_NAME);
-  const textMessage = document.createElement(TAG_NAME[1]);
+  const textMessage = document.createElement('p');
   textMessage.textContent = TEXT;
-  const button = document.createElement(TAG_NAME[2]);
+  const button = document.createElement('button');
   button.textContent = BUTTON_TEXT;
   message.appendChild(textMessage);
   message.appendChild(button);

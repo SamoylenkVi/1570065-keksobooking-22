@@ -2,7 +2,7 @@ import {debounce} from './utils.js'
 import { createMapPin, removeMapPin } from './map.js';
 
 const MAX_OFFERS = 10;
-const DEFOULT = 'any';
+const DEFAULT = 'any';
 
 const filterSettings = {
   type: 'any',
@@ -48,10 +48,10 @@ const filterOffers = (offers) => {
   for (let i = 0; i < offers.length; i++) {
     const { offer } = offers[i];
     if (
-      (filterSettings.type === DEFOULT || filterSettings.type === offer.type) &&
-      (filterSettings.price === DEFOULT || price[filterSettings.price](offer)) &&
-      (filterSettings.rooms === DEFOULT || +filterSettings.rooms === offer.rooms) &&
-      (filterSettings.guests === DEFOULT || +filterSettings.guests === offer.guests) &&
+      (filterSettings.type === DEFAULT || filterSettings.type === offer.type) &&
+      (filterSettings.price === DEFAULT || price[filterSettings.price](offer)) &&
+      (filterSettings.rooms === DEFAULT || +filterSettings.rooms === offer.rooms) &&
+      (filterSettings.guests === DEFAULT || +filterSettings.guests === offer.guests) &&
       checkFeturesList(offer)
     ) {
       filtered.push(offers[i]);
