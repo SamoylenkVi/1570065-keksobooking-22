@@ -1,4 +1,4 @@
-import { numDecline } from './utils.js'
+import { getNumDecline } from './utils.js'
 
 const TypeOfHouse = {
   flat: 'Квартира',
@@ -63,7 +63,7 @@ const renderCard = ({ author, offer }) => {
   }
   const capacity = offerCard.querySelector('.popup__text--capacity');
   if (offer.rooms && offer.guests) {
-    capacity.textContent = `${offer.rooms} ${numDecline(offer.rooms, 'комната', 'комнаты', 'комнат')} для ${offer.guests} ${numDecline(offer.guests, 'гостя', 'гостей', 'гостей')}`;
+    capacity.textContent = `${offer.rooms} ${getNumDecline(offer.rooms, 'комната', 'комнаты', 'комнат')} для ${offer.guests} ${getNumDecline(offer.guests, 'гостя', 'гостей', 'гостей')}`;
   } else {
     capacity.remove();
   }

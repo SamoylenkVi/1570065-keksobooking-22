@@ -1,6 +1,6 @@
 const DEBOUNCE_INTERVAL = 500;
 
-const numDecline = (num, nominative, genitiveSingular, genitivePlural) => {
+const getNumDecline = (num, nominative, genitiveSingular, genitivePlural) => {
   if (num > 10 && (Math.round((num % 100) / 10)) === 1) {
     return genitivePlural;
   } else {
@@ -29,4 +29,4 @@ const debounce = (cb) => {
     }, DEBOUNCE_INTERVAL);
   };
 };
-export { numDecline, debounce };
+export { getNumDecline, debounce };

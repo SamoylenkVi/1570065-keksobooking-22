@@ -4,7 +4,7 @@ import { createMapPin, removeMapPin } from './map.js';
 const MAX_OFFERS = 10;
 const DEFAULT = 'any';
 
-const filterSettings = {
+let filterSettings = {
   type: 'any',
   price: 'any',
   rooms: 'any',
@@ -76,4 +76,4 @@ const setFilters = (offers) => {
   ))
 }
 
-export { setFilters }
+export { setFilters, filterSettings, DEFAULT }

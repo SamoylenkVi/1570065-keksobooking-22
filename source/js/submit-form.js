@@ -1,9 +1,10 @@
-import { adressDefoult, createMapPin, updateMainMarker } from './map.js';
+import { getAdressDefoult, createMapPin, updateMainMarker, closeAllPopup } from './map.js';
+import { filterSettings, DEFAULT } from './sort-pin.js';
 import { dataOffers } from './fetch.js';
 
-const AVATAR_DEFOULT = 'img/muffin-grey.svg';
+const AVATAR_DEFAULT = 'img/muffin-grey.svg';
 const EXPORT_SERVER = 'https://22.javascript.pages.academy/keksobooking';
-const PRICE_DEFOULT = '1000';
+const PRICE_DEFAULT = '1000';
 
 const Keys = {
   ESCAPE: 'Escape',
@@ -22,6 +23,7 @@ const containerPictureAvatar = document.querySelector('.ad-form-header__preview'
 const avatarPicture = containerPictureAvatar.querySelector('img');
 const housingPictureContainer = document.querySelector('.ad-form__photo');
 const mapFilters = document.querySelector('.map__filters');
+
 
 const addOfferFormSubmit = (onSuccess, onError) => {
 
@@ -51,7 +53,7 @@ const escapeSuccessKeydownHandler = (evt) => {
 
   evt.preventDefault();
 
-  if (evt.key === Keys.ESCAPE || evt.key === Keys.ESC ) {
+  if (evt.key === Keys.ESCAPE || evt.key === Keys.ESC) {
     popUp.remove();
   }
 
@@ -99,12 +101,23 @@ const closeErrorPopUpHandler = () => {
 
 const resetForm = () => {
   addOfferForm.reset();
-  offerPrice.placeholder = PRICE_DEFOULT;
-  adressDefoult();
+
+  offerPrice.placeholder = PRICE_DEFAULT;
+
+  getAdressDefoult();
   updateMainMarker();
-  avatarPicture.src = AVATAR_DEFOULT;
+  closeAllPopup();
+
+  avatarPicture.src = AVATAR_DEFAULT;
+
   housingPictureContainer.innerHTML = '';
+
   mapFilters.reset();
+  filterSettings.type = DEFAULT
+  filterSettings.price = DEFAULT
+  filterSettings.rooms = DEFAULT
+  filterSettings.guests = DEFAULT
+
   createMapPin(dataOffers);
 }
 
@@ -113,9 +126,9 @@ resetFormButton.addEventListener('click', (evt) => {
   resetForm();
 })
 
-const successfulFormSubmission = () => {
+const createSuccessSubmission = () => {
   createSuccessMesage();
   resetForm();
 }
 
-addOfferFormSubmit(successfulFormSubmission, createErrorMesage)
+addOfferFormSubmit(createSuccessSubmission, createErrorMesage)
