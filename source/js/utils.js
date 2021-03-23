@@ -1,7 +1,7 @@
 const DEBOUNCE_INTERVAL = 500;
 
 const numDecline = (num, nominative, genitiveSingular, genitivePlural) => {
-  if (num > 10 && (Math.round((num % 100) / 10)) == 1) {
+  if (num > 10 && (Math.round((num % 100) / 10)) === 1) {
     return genitivePlural;
   } else {
     switch (num % 10) {
